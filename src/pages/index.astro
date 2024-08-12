@@ -1,0 +1,23 @@
+---
+
+import Layout from "../layouts/Layout.astro";
+import {PokemonList} from "../interfaces/pokemon-response.interface";
+import PokemonCard from "../component/PokemonCard.astro";
+
+const titulo = "Main layout"
+
+const resp = await fetch('https://pokeapi.co/api/v2/pokemon')
+const data: PokemonList = await resp.json() as PokemonList
+console.log(data)
+---
+
+<Layout title={titulo}>
+	<h1 class="text-3xl text-blue-500">
+		Listado
+	</h1>
+	<div class="flex flex-wrap justify-center p-1.5">
+
+	{data.results.map((pokemon, index) => ( <PokemonCard name={pokemon.name}  url={pokemon.url}/> ))}
+	</div>
+
+</Layout>

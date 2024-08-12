@@ -3,22 +3,30 @@
 import type {GetStaticPaths} from "astro";
 import Layout from "../../layouts/Layout.astro";
 import PokemonCard from "../../component/PokemonCard.astro";
-export const getStaticPaths = (()=> {
+import {PokeResponse} from "../../interfaces/pokemon-single";
+import {PokemonList} from "../../interfaces/pokemon-response.interface";
+export const getStaticPaths = (async ()=> {
 
-    return [
-        {params: {name: `bulbasaur`}, props: {name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/"}},
-        {params: {name: `ivysaur`}, props: {name: "ivasour", url: "https://pokeapi.co/api/v2/pokemon/2/"}},
-        {params: {name: `venusaur`}, props: {name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/2/"}},
-    ]
+    const resp = await fetch('https://pokeapi.co/api/v2/pokemon??limit=151&offset=151')
+    const {results} = (await resp.json()) as PokemonList
+    const exit = results.map(({name, url})=> (
+        {params: {name },
+         props: {name ,url}}
+    ))
+    //console.log(exit)
+    console.log(exit)
+    return exit
 }) satisfies GetStaticPaths;
+
+
 const {name} = Astro.params
 const {url} = Astro.props
-console.log('d',name)
+const {id} = url.split('/').at(-2)
 
 ---
 <Layout title="Algun pokemon">
 
-    <PokemonCard name={name} url={url} />
+    <PokemonCard name={name} url={url} isBig={false}/>
     <h1 class="text-3xl">{name}</h1>
 
 </Layout>

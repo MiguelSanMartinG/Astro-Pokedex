@@ -3,22 +3,25 @@
 import Layout from "../layouts/Layout.astro";
 import {type PokemonList} from "../interfaces/pokemon-response.interface";
 import PokemonCard from "../component/PokemonCard.astro";
+import LogoSliders from "../component/LogoSliders.astro";
 
 const titulo = "Main layout"
 
-const resp = await fetch('https://pokeapi.co/api/v2/pokemon')
+const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30&offset=386')
 const data: PokemonList = await resp.json() as PokemonList
-console.log(data)
 ---
+
+<!--<LogoSliders></LogoSliders>-->
 
 <Layout title={titulo}>
 
-	<h1 class="text-3xl text-blue-500">
-		Listado
-	</h1>
-	<div class="flex shrink-0 flex-wrap justify-center p-1.5">
+	<!--<h1 class="text-3xl text-blue-500 my-20">-->
+	<!--	LISTA-->
+	<!--</h1>-->
+	<div class="flex shrink-0 flex-wrap justify-center p-1.5 my-24" >
 
-	{data?.results?.map((pokemon) => (<PokemonCard name={pokemon.name}  url={pokemon.url}/> ))}
+	{data?.results?.map((pokemon) => (<PokemonCard name={pokemon.name}  url={pokemon.url} isBig={false}/> ))}
 	</div>
+
 
 </Layout>

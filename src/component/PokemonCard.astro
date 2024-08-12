@@ -1,5 +1,5 @@
 ---
-import {type PokeResponse, type Sprites} from "../interfaces/pokemon-single";
+import {type PokeResponse} from "../interfaces/pokemon-single";
 const {name, url} = Astro.props
 const response: Response = await fetch(url)
 const data: PokeResponse = await response.json();

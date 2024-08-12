@@ -1,8 +1,19 @@
 ---
 
+import type {GetStaticPaths} from "astro";
 import Layout from "../../layouts/Layout.astro";
+export const getStaticPaths = (()=> {
+
+    return [
+        {params: {name: `bulbasour`}},
+        {params: {name: `bulbasour`}},
+        {params: {name: `bulbasour`}}
+    ]
+}) satisfies GetStaticPaths;
+const {name} = Astro.params
+
 ---
 <Layout title="Algun pokemon">
 
-    <span> TESTING </span>
+    <span> {name} </span>
 </Layout>

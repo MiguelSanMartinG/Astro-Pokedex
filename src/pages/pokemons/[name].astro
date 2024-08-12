@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import PokemonCard from "../../component/PokemonCard.astro";
 import type {PokemonList} from "../../interfaces/pokemon-response.interface";
 export const getStaticPaths = (async ()=> {
-    const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30&offset=386')
+    const resp = await fetch('https://pokeapi.co/api/v2/pokemon??limit=151&offset=151')
     const {results} = (await resp.json()) as PokemonList
     return  results?.map(({name, url})=> (
         {params: {name },

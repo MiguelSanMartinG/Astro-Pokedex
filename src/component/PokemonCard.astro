@@ -1,9 +1,9 @@
 ---
-import {PokeResponse, Sprites} from "../interfaces/pokemon-single";
+import {type PokeResponse, type Sprites} from "../interfaces/pokemon-single";
 const {name, url} = Astro.props
 const response: Response = await fetch(url)
 const data: PokeResponse = await response.json();
-const {sprites}: Sprites | undefined = data;
+const {sprites}:any = data;
 // console.log('Pokimon', sprites.other.dream_world.front_default)
 const pnum:string = url.split('/')[6]
 console.log(name)
@@ -16,7 +16,7 @@ console.log(name)
     <a href={`/pokemons/${name}`}
        class="max-w-sm rounded overflow-hidden
        text-center
-       shadow-lg bg-white justify-center m-1.5 align-text-bottom shrink cursor-pointer"">
+       shadow-lg bg-white justify-center m-1.5 align-text-bottom shrink cursor-pointer">
         {<img id={name} class="max-w-xs m-auto" src={sprites.other.dream_world.front_default}
               alt="Sunset in he mountains"
         />}
@@ -27,10 +27,10 @@ console.log(name)
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et
                 perferendis eaque, exercitationem praesentium nihil.
             </p>
-            {data.types.map(slot =>
+            {data?.types?.map(slot =>
 
                     <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                        {slot.type.name}
+                        {slot?.type?.name ?? 'unload'}
                     </span>
             )}
         </div>

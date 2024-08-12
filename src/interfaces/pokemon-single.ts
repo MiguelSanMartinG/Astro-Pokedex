@@ -158,7 +158,7 @@ export type GenerationVii = {
 }
 
 export type DreamWorld = {
-    readonly frontDefault?: string;
+    readonly front_default?: string;
     readonly frontFemale?:  null;
 }
 

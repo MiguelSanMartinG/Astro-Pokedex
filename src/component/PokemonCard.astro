@@ -6,24 +6,16 @@ const data: PokeResponse = await response.json();
 const {sprites}:any = data;
 // console.log('Pokimon', sprites.other.dream_world.front_default)
 const pnum:string = url.split('/')[6]
-console.log(name)
 
 ---
-
-
-
     <!--Card-->
-    <a href={`/pokemons/${name}`}
-       class="max-w-sm rounded overflow-hidden
-       text-center
-       shadow-lg bg-white justify-center m-1.5 align-text-bottom shrink cursor-pointer">
-        {<img id={name} class="max-w-xs m-auto" src={sprites.other.dream_world.front_default}
-              alt="Sunset in he mountains"
-        />}
+    <div
+       class="max-w-sm rounded overflow-hidden text-center shadow-lg bg-white justify-center m-1.5 align-text-bottom shrink cursor-pointer">
+        <a href={`/pokemons/${name}`}>
+        {<img id={name} class="max-w-xs max-h-xs w-60 h-60 m-auto" src={sprites.other.dream_world.front_default} alt="1"/>}
         <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2 text-gray-800">{name}</div>
             <p class="text-gray-700  text-base">
-                {pnum}
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et
                 perferendis eaque, exercitationem praesentium nihil.
             </p>
@@ -38,7 +30,8 @@ console.log(name)
                 class="m-auto text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
             VER MAS
         </button>
-    </a>
+        </a>
+    </div>
 
 <!--<script>-->
 <!--    (function(window, document, undefined) {-->

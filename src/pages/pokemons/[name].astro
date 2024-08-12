@@ -1,27 +1,20 @@
 ---
-
-import type {GetStaticPaths} from "astro";
 import Layout from "../../layouts/Layout.astro";
 import PokemonCard from "../../component/PokemonCard.astro";
-import {PokeResponse} from "../../interfaces/pokemon-single";
-import {PokemonList} from "../../interfaces/pokemon-response.interface";
+import type {PokemonList} from "../../interfaces/pokemon-response.interface";
 export const getStaticPaths = (async ()=> {
-
-    const resp = await fetch('https://pokeapi.co/api/v2/pokemon??limit=151&offset=151')
+    const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30&offset=386')
     const {results} = (await resp.json()) as PokemonList
-    const exit = results.map(({name, url})=> (
+    return  results?.map(({name, url})=> (
         {params: {name },
-         props: {name ,url}}
+            props: {name ,url}}
     ))
-    //console.log(exit)
-    console.log(exit)
-    return exit
-}) satisfies GetStaticPaths;
+});
 
 
 const {name} = Astro.params
 const {url} = Astro.props
-const {id} = url.split('/').at(-2)
+// const {id} = url.split('/').at(-2) ?? 0
 
 ---
 <Layout title="Algun pokemon">

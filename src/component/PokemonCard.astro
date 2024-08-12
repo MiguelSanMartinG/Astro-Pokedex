@@ -4,10 +4,6 @@ const {name, url, isBig} = Astro.props
 const response: Response = await fetch(url)
 const data: PokeResponse = await response.json();
 const {sprites}:any = data;
-// console.log('Pokimon', sprites.other.dream_world.front_default)
-const pnum:string = url.split('/')[6]
-console.log(isBig)
-
 ---
     <!--Card-->
     <div class:list= {[
